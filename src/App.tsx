@@ -3,17 +3,21 @@ import CardView from "./СardView/CardView";
 import CardDeck from "./lib/CardDeck";
 import Card from "./lib/Card";
 import './App.css';
+import PokerHand from "./lib/PokerHand";
 
 
 const App = () => {
   const [cards, setCards] = useState<Card[]>([]);
 
-  let outcome = "";
+  const [outcome, setOutcome] = useState<string>();
 
   const takeCards = () => {
     const cardDeck = new CardDeck();
     const cardsArray = cardDeck.getCards(5);
+    const pokerHand = new PokerHand(cardsArray);
+    const hand = pokerHand.getOutCome();
     setCards(cardsArray);
+    setOutcome(hand);
   }
 
   const button = <button onClick={takeCards}>Выдача 5 карт</button>
